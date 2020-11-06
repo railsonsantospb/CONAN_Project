@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 't
 import Videos from './Videos';
 
 @Entity('theme')
-export default class Product {
+export default class Theme {
 
   @PrimaryGeneratedColumn('increment')
   id: number;

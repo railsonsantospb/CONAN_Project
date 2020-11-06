@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('theme')
+@Entity('user')
 export default class Product {
 
   @PrimaryGeneratedColumn('increment')

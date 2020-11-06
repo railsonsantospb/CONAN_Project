@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 't
 import Theme from './Theme';
 
 @Entity('videos')
-export default class Images {
+export default class Videos {
 
   @PrimaryGeneratedColumn('increment')
   id: number;

@@ -1,13 +1,21 @@
 import Videos from '../model/Videos';
 import dotenv from 'dotenv';
+import moment from 'moment';
 
 dotenv.config();
+
+
 
 export default {
   render(video: Videos) {
     return {
       id: video.id,
+      title: video.title,
       url: process.env.URL + `${video.path}`,
+      about: video.about,
+      path: video.path,
+      date: moment(parseFloat(video.date)).format("DD-MM-YYYY h:mm:ss")
+
     }
   },
   renderMany(videos: Videos[]) {

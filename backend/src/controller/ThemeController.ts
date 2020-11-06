@@ -3,15 +3,19 @@ import Theme from '../model/Theme';
 import { Request, Response } from 'express';
 import themeView from '../views/themes_views';
 import * as Yup from 'yup';
+import fs from 'fs';
+
 
 export default {
   async index(req: Request, res: Response) {
+   
 
     const themesRepository = getRepository(Theme);
 
     const themes = await themesRepository.find({
       relations:['videos']
     });
+
 
     return res.json(themeView.renderMany(themes));
   },
@@ -39,11 +43,12 @@ export default {
     const videoRequest = req.files as Express.Multer.File[];
 
     const videos = videoRequest.map(video => {
-      return {path: video.filename}
+      let name = video.filename.replace('-', '#').split('#')[1];
+      return {path: video.filename.replace(/ /g, '-'), title: name, about: '', date: Date.now()}
     });
 
     const data = {
-      title,
+      title, videos
     }
 
     const schema = Yup.object().shape({
@@ -58,11 +63,35 @@ export default {
     });
 
     const theme = themesRepository.create({
-      title, videos,
+      title, videos
     });
 
     await themesRepository.save(theme);
 
     return res.status(201).json({theme});
-  }
+  },
+
+
+  async update(req: Request, res: Response) {
+
+    
+
+    const {
+      title,
+    } = req.body;
+
+    const { id } = req.params;
+
+    console.log(title);
+
+    const themesRepository = getRepository(Theme);
+
+    const themes = await themesRepository.findOneOrFail(id, {
+      relations:['videos']
+    });
+
+    await themesRepository.save(themes);
+
+    return res.json(themeView.render(themes));
+  },
 };
