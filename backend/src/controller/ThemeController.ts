@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import themeView from '../views/themes_views';
 import * as Yup from 'yup';
 import fs from 'fs';
+import Videos from '../model/Videos';
 
 
 export default {
@@ -36,6 +37,7 @@ export default {
   async create(req: Request, res: Response) {
     const {
       title,
+      about,
     } = req.body;
 
     const themesRepository = getRepository(Theme);
@@ -43,8 +45,7 @@ export default {
     const videoRequest = req.files as Express.Multer.File[];
 
     const videos = videoRequest.map(video => {
-      let name = video.filename.replace('-', '#').split('#')[1];
-      return {path: video.filename.replace(/ /g, '-'), title: name, about: '', date: Date.now()}
+      return {path: video.filename, title: title, about: about, date: Date.now()+''}
     });
 
     const data = {
@@ -93,5 +94,43 @@ export default {
     await themesRepository.save(themes);
 
     return res.json(themeView.render(themes));
+  },
+
+  async deleteTheme(req: Request, res: Response) {
+
+    
+
+    const { id } = req.params;
+
+
+    const themesRepositoryTheme = getRepository(Theme);
+    const themesRepositoryVideo = getRepository(Videos);
+
+    const themes = await themesRepositoryTheme.findOneOrFail(id, {
+      relations:['videos'],
+    });
+
+
+
+    await themesRepositoryVideo.remove(themes.videos);
+
+    await themesRepositoryTheme.remove(themes);
+
+    return res.json(themeView.render(themes));
+  },
+
+  async deleteVideo(req: Request, res: Response) {
+
+    
+
+    const { id } = req.params;
+
+
+    const themesRepositoryVideo = getRepository(Videos);
+
+
+    await themesRepositoryVideo.delete(id);
+
+    return res.json({'message': 'successfully'});
   },
 };

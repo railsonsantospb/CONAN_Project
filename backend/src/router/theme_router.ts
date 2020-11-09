@@ -10,5 +10,7 @@ routes.post('/theme', upload.array('videos'), ThemeController.create);
 routes.get('/theme', ThemeController.index);
 routes.get('/theme/:id', ThemeController.show);
 routes.put('/theme/:id', upload.array('videos'), ThemeController.update);
+routes.delete('/themeT/:id', ThemeController.deleteTheme);
+routes.delete('/themeV/:id', ThemeController.deleteVideo);
 
 export default routes;

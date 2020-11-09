@@ -11,7 +11,7 @@ export default class Theme {
   title: string;
 
   @OneToMany(() => Videos, video => video.theme, {
-    cascade: ['insert', 'update']
+    cascade: ['insert', 'update', 'remove']
   })
   @JoinColumn({ name: 'videos_id' })
   videos: Videos[];
