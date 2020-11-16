@@ -75,8 +75,6 @@ export default {
 
   async update(req: Request, res: Response) {
 
-    
-
     const {
       title,
     } = req.body;
