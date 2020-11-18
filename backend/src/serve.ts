@@ -4,7 +4,6 @@ import path from 'path';
 import 'express-async-errors';
 import errorHandler from './errors/handler';
 import cors from 'cors';
-const session = require('express-session');
 
 
 import './database/connection';

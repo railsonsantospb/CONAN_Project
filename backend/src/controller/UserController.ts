@@ -5,10 +5,10 @@ import User from '../model/User';
 import * as Yup from 'yup';
 
 
+
 export default {
     async index(req: Request, res: Response) {
      
-
 
       const usersRepository = getRepository(User);
   
@@ -18,8 +18,6 @@ export default {
     },
 
     async show(req: Request, res: Response) {
-
-      console.log(req.session);
 
       const { id } = req.params;
 
