@@ -1,10 +1,5 @@
 import Videos from '../model/Videos';
-import dotenv from 'dotenv';
 import moment from 'moment';
-
-dotenv.config();
-
-
 
 export default {
   render(video: Videos) {

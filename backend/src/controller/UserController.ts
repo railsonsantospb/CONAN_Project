@@ -5,64 +5,71 @@ import User from '../model/User';
 import * as Yup from 'yup';
 
 
-
 export default {
-    async index(req: Request, res: Response) {
-     
+  async index(req: Request, res: Response) {
 
-      const usersRepository = getRepository(User);
-  
-      const users = await usersRepository.find();
-  
-      return res.json(userView.renderMany(users));
-    },
+    const usersRepository = getRepository(User);
 
-    async show(req: Request, res: Response) {
 
-      const { id } = req.params;
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
 
-      
-  
-      const usersRepository = getRepository(User);
-  
-      const users = await usersRepository.findOneOrFail(id);
-  
-      return res.json(userView.render(users));
-    },
+    const users = await usersRepository.find();
 
-    async create(req: Request, res: Response) {
-    
+    return res.json(userView.renderMany(users));
+  },
 
-        const {
-          email,
-          password,
-        } = req.body;
-        
-        console.log(req.body);
+  async show(req: Request, res: Response) {
 
-        const usersRepository = getRepository(User);
+    const { id } = req.params;
 
-    
-        const data = {
-          email, password
-        }
-    
-        const schema = Yup.object().shape({
-          email: Yup.string().required(),
-          password: Yup.string().required(),
-        });
-    
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-    
-        const user = usersRepository.create({
-          email, password
-        });
-    
-        await usersRepository.save(user);
-    
-        return res.status(201).json({user});
-      },
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
+
+    const usersRepository = getRepository(User);
+
+    const users = await usersRepository.findOneOrFail(id);
+
+    return res.json(userView.render(users));
+  },
+
+  async create(req: Request, res: Response) {
+
+
+    const {
+      email,
+      password,
+    } = req.body;
+
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
+
+    const usersRepository = getRepository(User);
+
+
+    const data = {
+      email, password
+    }
+
+    const schema = Yup.object().shape({
+      email: Yup.string().required(),
+      password: Yup.string().required(),
+    });
+
+    await schema.validate(data, {
+      abortEarly: false,
+    });
+
+    const user = usersRepository.create({
+      email, password
+    });
+
+    await usersRepository.save(user);
+
+    return res.status(201).json({ user });
+  },
 }
 

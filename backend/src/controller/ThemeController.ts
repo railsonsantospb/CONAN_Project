@@ -9,12 +9,15 @@ import Videos from '../model/Videos';
 
 export default {
   async index(req: Request, res: Response) {
-   
+
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
 
     const themesRepository = getRepository(Theme);
 
     const themes = await themesRepository.find({
-      relations:['videos']
+      relations: ['videos']
     });
 
 
@@ -25,10 +28,14 @@ export default {
 
     const { id } = req.params;
 
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
+
     const themesRepository = getRepository(Theme);
 
     const themes = await themesRepository.findOneOrFail(id, {
-      relations:['videos']
+      relations: ['videos']
     });
 
     return res.json(themeView.render(themes));
@@ -40,12 +47,16 @@ export default {
       about,
     } = req.body;
 
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
+
     const themesRepository = getRepository(Theme);
 
     const videoRequest = req.files as Express.Multer.File[];
 
     const videos = videoRequest.map(video => {
-      return {path: video.filename, title: title, about: about, date: Date.now()+''}
+      return { path: video.filename, title: title, about: about, date: Date.now() + '' }
     });
 
     const data = {
@@ -69,7 +80,7 @@ export default {
 
     await themesRepository.save(theme);
 
-    return res.status(201).json({theme});
+    return res.status(201).json({ theme });
   },
 
 
@@ -81,12 +92,15 @@ export default {
 
     const { id } = req.params;
 
-    console.log(title);
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
+
 
     const themesRepository = getRepository(Theme);
 
     const themes = await themesRepository.findOneOrFail(id, {
-      relations:['videos']
+      relations: ['videos']
     });
 
     await themesRepository.save(themes);
@@ -96,16 +110,17 @@ export default {
 
   async deleteTheme(req: Request, res: Response) {
 
-    
-
     const { id } = req.params;
 
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
 
     const themesRepositoryTheme = getRepository(Theme);
     const themesRepositoryVideo = getRepository(Videos);
 
     const themes = await themesRepositoryTheme.findOneOrFail(id, {
-      relations:['videos'],
+      relations: ['videos'],
     });
 
 
@@ -119,16 +134,17 @@ export default {
 
   async deleteVideo(req: Request, res: Response) {
 
-    
-
     const { id } = req.params;
 
+    if(req.headers.authorization != process.env.TOKEN){
+      return res.json({'token': 'invalid token'});
+    }
 
     const themesRepositoryVideo = getRepository(Videos);
 
 
     await themesRepositoryVideo.delete(id);
 
-    return res.json({'message': 'successfully'});
+    return res.json({ 'message': 'successfully' });
   },
 };
