@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import Theme from './Theme';
+import Comments from './Comments';
 
 @Entity('videos')
 export default class Videos {
@@ -22,5 +23,13 @@ export default class Videos {
   @ManyToOne(() => Theme, theme => theme.videos)
   @JoinColumn({ name: 'videos_id' })
   theme: Theme;
+
+
+
+  @OneToMany(() => Comments, comment => comment.videos, {
+    cascade: ['insert', 'update', 'remove']
+  })
+  @JoinColumn({ name: 'comments_id' })
+  comments: Videos[];
 
 }
