@@ -20,16 +20,7 @@ export default class Videos {
   @Column()
   date: string;
 
-  @ManyToOne(() => Theme, theme => theme.videos)
-  @JoinColumn({ name: 'videos_id' })
-  theme: Theme;
-
-
-
-  @OneToMany(() => Comments, comment => comment.videos, {
-    cascade: ['insert', 'update', 'remove']
-  })
-  @JoinColumn({ name: 'comments_id' })
-  comments: Videos[];
+  @Column()
+  theme_id: number;
 
 }

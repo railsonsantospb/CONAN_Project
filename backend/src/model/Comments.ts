@@ -13,8 +13,7 @@ export default class Comments {
   @Column()
   date: string;
 
-  @ManyToOne(() => Videos, video => video.comments)
-  @JoinColumn({ name: 'comments_id' })
-  videos: Videos;
+  @Column()
+  video_id: number;
 
 }

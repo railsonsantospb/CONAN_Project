@@ -20,24 +20,14 @@ export class CreateComments1605885417837 implements MigrationInterface {
                     type: 'string',
                 },
                 {
-                    name: 'video_id',
-                    type: 'integer',
-                },
-                {
                     name: 'date',
                     type: 'text',
                 },
-            ],
-            foreignKeys: [
                 {
-                    name: 'VideoComments',
-                    columnNames: ['video_id'],
-                    referencedTableName: 'videos',
-                    referencedColumnNames: ['id'],
-                    onUpdate: 'CASCADE',
-                    onDelete: 'CASCADE',
+                    name: 'video_id',
+                    type: 'integer',
                 }
-            ]
+            ],
         }));
     }
 

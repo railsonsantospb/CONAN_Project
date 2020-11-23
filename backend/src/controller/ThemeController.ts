@@ -44,7 +44,6 @@ export default {
   async create(req: Request, res: Response) {
     const {
       title,
-      about,
     } = req.body;
 
     if(req.headers.authorization != process.env.TOKEN){
@@ -53,21 +52,12 @@ export default {
 
     const themesRepository = getRepository(Theme);
 
-    const videoRequest = req.files as Express.Multer.File[];
-
-    const videos = videoRequest.map(video => {
-      return { path: video.filename, title: title, about: about, date: Date.now() + '' }
-    });
-
     const data = {
-      title, videos
+      title
     }
 
     const schema = Yup.object().shape({
       title: Yup.string().required(),
-      videos: Yup.array(Yup.object().shape({
-        path: Yup.string().required(),
-      })),
     });
 
     await schema.validate(data, {
@@ -75,7 +65,7 @@ export default {
     });
 
     const theme = themesRepository.create({
-      title, videos
+      title
     });
 
     await themesRepository.save(theme);
@@ -88,6 +78,7 @@ export default {
 
     const {
       title,
+      about,
     } = req.body;
 
     const { id } = req.params;
@@ -99,9 +90,19 @@ export default {
 
     const themesRepository = getRepository(Theme);
 
+    const videoRequest = req.files as Express.Multer.File[];
+
+
+    const videos = videoRequest.map(video => {
+      return { path: video.filename, title: title, about: about, date: Date.now() + '' }
+    });
+
+
     const themes = await themesRepository.findOneOrFail(id, {
       relations: ['videos']
     });
+    
+    console.log(videos);
 
     await themesRepository.save(themes);
 
