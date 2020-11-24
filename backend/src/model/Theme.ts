@@ -10,4 +10,10 @@ export default class Theme {
   @Column()
   title: string;
 
+  @OneToMany(() => Videos, video => video.theme, {
+    cascade: ['insert', 'update', 'remove']
+  })
+  @JoinColumn({ name: 'videos_id' })
+  videos: Videos[];
+
 }

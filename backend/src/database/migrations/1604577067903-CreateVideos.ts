@@ -24,6 +24,10 @@ export class CreateVideos1604577067903 implements MigrationInterface {
                     type: 'string',
                 },
                 {
+                    name: 'themes_id',
+                    type: 'integer',
+                },
+                {
                     name: 'path',
                     type: 'string',
                 },
@@ -31,15 +35,17 @@ export class CreateVideos1604577067903 implements MigrationInterface {
                     name: 'date',
                     type: 'text',
                 },
-                {
-                    name: 'theme_id',
-                    type: 'integer',
-                },
-                {
-                    name: 'thumbnail',
-                    type: 'text',
-                },
             ],
+            foreignKeys: [
+                {
+                    name: 'ThemeVideos',
+                    columnNames: ['themes_id'],
+                    referencedTableName: 'theme',
+                    referencedColumnNames: ['id'],
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
+                }
+            ]
         }));
     }
 

@@ -1,7 +1,5 @@
 import User from '../model/User';
 
-
-
 export default {
   render(user: User) {
     return {

@@ -20,7 +20,9 @@ export default class Videos {
   @Column()
   date: string;
 
-  @Column()
-  theme_id: number;
+  @ManyToOne(() => Theme, theme => theme.videos)
+  @JoinColumn({ name: 'videos_id' })
+  theme: Theme;
+  
 
 }

@@ -26,7 +26,7 @@ export class CreateComments1605885417837 implements MigrationInterface {
                 {
                     name: 'video_id',
                     type: 'integer',
-                }
+                },
             ],
         }));
     }
