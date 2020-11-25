@@ -35,6 +35,10 @@ export class CreateVideos1604577067903 implements MigrationInterface {
                     name: 'date',
                     type: 'text',
                 },
+                {
+                    name: 'thumbnail',
+                    type: 'text',
+                },
             ],
             foreignKeys: [
                 {
