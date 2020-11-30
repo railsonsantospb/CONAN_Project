@@ -8,9 +8,10 @@ import dotenv from 'dotenv';
 
 
 import './database/connection';
-import routesT from './router/theme_router';
-import routesU from './router/user_router';
-import routesC from './router/comment_router';
+import routesTheme from './router/theme_router';
+import routesUser from './router/user_router';
+import routesComment from './router/comment_router';
+import routesThumbnail from './router/thumbnail_router';
 
 dotenv.config();
 
@@ -21,9 +22,10 @@ app.use(express.json());
 
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-app.use(routesT);
-app.use(routesU);
-app.use(routesC);
+app.use(routesTheme);
+app.use(routesUser);
+app.use(routesComment);
+app.use(routesThumbnail);
 app.use(errorHandler);
 
 app.listen(3333);

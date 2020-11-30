@@ -1,10 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateVideos1604577067903 implements MigrationInterface {
+
+export class CreateImage1606346654703 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'videos',
+            name: 'images',
             columns: [
                 {
     				name: 'id',
@@ -16,31 +17,19 @@ export class CreateVideos1604577067903 implements MigrationInterface {
 
                 },
                 {
-                    name: 'title',
-                    type: 'string',
-                },
-                {
-                    name: 'about',
-                    type: 'string',
-                },
-                {
-                    name: 'themes_id',
-                    type: 'integer',
-                },
-                {
                     name: 'path',
                     type: 'string',
                 },
                 {
-                    name: 'date',
-                    type: 'text',
-                },
+                    name: 'thumbnail_id',
+                    type: 'integer',
+                }
             ],
             foreignKeys: [
                 {
-                    name: 'ThemeVideos',
-                    columnNames: ['themes_id'],
-                    referencedTableName: 'theme',
+                    name: 'ThumbnailImage',
+                    columnNames: ['thumbnail_id'],
+                    referencedTableName: 'thumbnail',
                     referencedColumnNames: ['id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE',
@@ -50,7 +39,7 @@ export class CreateVideos1604577067903 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('videos');
+        await queryRunner.dropTable('images');
     }
 
 }

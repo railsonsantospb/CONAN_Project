@@ -7,14 +7,14 @@ import Videos from '../model/Videos';
 
 
 export default {
-    async create(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const { id } = req.params;
     const {
       comments,
     } = req.body;
     const video_id = id;
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+    if (req.headers.authorization != process.env.TOKEN) {
+      return res.json({ 'token': 'invalid token' });
     }
     const commentsRepository = getRepository(Comments);
     const date = Date.now();
@@ -23,6 +23,7 @@ export default {
       date,
       video_id
     }
+
     const schema = Yup.object().shape({
       comments: Yup.string().required(),
       date: Yup.number().required(),
@@ -32,23 +33,23 @@ export default {
     });
     const themesRepositoryVideo = getRepository(Videos);
     try {
-        const v = await themesRepositoryVideo.findOneOrFail(video_id);
-        const comm = commentsRepository.create({
+      const v = await themesRepositoryVideo.findOneOrFail(video_id);
+      const comm = commentsRepository.create({
         comments, date, video_id
-        });
-        
-        await commentsRepository.save(comm);
-        return res.status(201).json({ comm });
-    } catch(e){
-        return res.json({'error': 'video not exist'});
+      });
+
+      await commentsRepository.save(comm);
+      return res.status(201).json({ comm });
+    } catch (e) {
+      return res.json({ 'error': 'video not exist' });
     }
-    
+
   },
 
 
   async show(req: Request, res: Response) {
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+    if (req.headers.authorization != process.env.TOKEN) {
+      return res.json({ 'token': 'invalid token' });
     }
     const commentsRepository = getRepository(Comments);
     const comment = await commentsRepository.find();
@@ -57,8 +58,8 @@ export default {
 
   async index(req: Request, res: Response) {
     const { id } = req.params;
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+    if (req.headers.authorization != process.env.TOKEN) {
+      return res.json({ 'token': 'invalid token' });
     }
     const commentsRepository = getRepository(Comments);
     const comment = await commentsRepository.findOneOrFail(id);
@@ -66,10 +67,21 @@ export default {
   },
 
 
+  async indexComment(req: Request, res: Response) {
+    const { id } = req.params;
+    if (req.headers.authorization != process.env.TOKEN) {
+      return res.json({ 'token': 'invalid token' });
+    }
+    const commentsRepository = getRepository(Comments);
+    const comment = await commentsRepository.find({ video_id: id });
+    return res.json(comment);
+  },
+
+
   async deleteComment(req: Request, res: Response) {
     const { id } = req.params;
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+    if (req.headers.authorization != process.env.TOKEN) {
+      return res.json({ 'token': 'invalid token' });
     }
     const commentsRepository = getRepository(Comments);
     await commentsRepository.delete(id);
