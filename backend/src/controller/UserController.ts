@@ -8,68 +8,112 @@ import * as Yup from 'yup';
 export default {
   async index(req: Request, res: Response) {
 
-    const usersRepository = getRepository(User);
+    try {
+
+      const usersRepository = getRepository(User);
 
 
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+      if (req.headers.authorization != process.env.TOKEN) {
+        return res.json({ 'token': 'invalid token' });
+      }
+
+      const users = await usersRepository.find();
+
+      return res.json(userView.renderMany(users));
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: 'Response Error', error });
     }
+  },
 
-    const users = await usersRepository.find();
+  async indexAcess(req: Request, res: Response) {
 
-    return res.json(userView.renderMany(users));
+    try {
+      const {
+        email,
+        password,
+      } = req.body;
+
+      const usersRepository = getRepository(User);
+
+
+      if (req.headers.authorization != process.env.TOKEN) {
+        return res.json({ 'token': 'invalid token' });
+      }
+      const users = await usersRepository.find({email: email, password: password});
+      if (users.length > 0) {
+        return res.json({ message: true });
+        console.log(userView.renderMany(users));
+      } else {
+        return res.json({ message: false });
+      }
+      
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: 'Response Error', error });
+    }
   },
 
   async show(req: Request, res: Response) {
 
-    const { id } = req.params;
+    try {
 
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+      const { id } = req.params;
+
+      if (req.headers.authorization != process.env.TOKEN) {
+        return res.json({ 'token': 'invalid token' });
+      }
+
+      const usersRepository = getRepository(User);
+
+      const users = await usersRepository.findOneOrFail(id);
+
+      return res.json(userView.render(users));
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: 'Response Error', error });
     }
-
-    const usersRepository = getRepository(User);
-
-    const users = await usersRepository.findOneOrFail(id);
-
-    return res.json(userView.render(users));
   },
 
   async create(req: Request, res: Response) {
 
+    try {
+      const {
+        email,
+        password,
+      } = req.body;
 
-    const {
-      email,
-      password,
-    } = req.body;
+      if (req.headers.authorization != process.env.TOKEN) {
+        return res.json({ 'token': 'invalid token' });
+      }
 
-    if(req.headers.authorization != process.env.TOKEN){
-      return res.json({'token': 'invalid token'});
+      const usersRepository = getRepository(User);
+
+
+      const data = {
+        email, password
+      }
+
+      const schema = Yup.object().shape({
+        email: Yup.string().required(),
+        password: Yup.string().required(),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      const user = usersRepository.create({
+        email, password
+      });
+
+      await usersRepository.save(user);
+
+      return res.status(201).json({ user });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ message: 'Response Error', error });
     }
-
-    const usersRepository = getRepository(User);
-
-
-    const data = {
-      email, password
-    }
-
-    const schema = Yup.object().shape({
-      email: Yup.string().required(),
-      password: Yup.string().required(),
-    });
-
-    await schema.validate(data, {
-      abortEarly: false,
-    });
-
-    const user = usersRepository.create({
-      email, password
-    });
-
-    await usersRepository.save(user);
-
-    return res.status(201).json({ user });
   },
 }
 
