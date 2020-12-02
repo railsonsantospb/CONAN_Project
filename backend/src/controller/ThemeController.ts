@@ -9,6 +9,7 @@ import Videos from '../model/Videos';
 import Image from '../model/Images';
 import Thumbnail from '../model/Thumbnail';
 import Comments from '../model/Comments';
+import path from 'path';
 
 export default {
 
@@ -136,7 +137,7 @@ export default {
         return { path: video.filename, title: title, about: about, date: Date.now() + '' }
       });
       const video = await themesRepositoryVideo.findOneOrFail(id);
-      
+
       video.path = videos[0].path;
       video.title = videos[0].title;
       video.about = videos[0].about;
@@ -164,18 +165,36 @@ export default {
       const imageRepository = getRepository(Image);
 
       const thumbnail = await thumbnailRepository.find({ video_id: parseInt(id), relations: ['image'] });
-      
+
       const themes = await themesRepositoryTheme.findOneOrFail(id, {
         relations: ['videos'],
       });
 
-      for (var t in thumbnail){
+      for (var t in thumbnail) {
+        const pathImage = path.join(__dirname, '..', '..', 'uploads') + '/' + thumbnail[t].image[0].path;
+        fs.unlink(pathImage, (error) => {
+          if (error) {
+            console.error(error);
+            return res.json({ 'message': 'not delete file', file: pathImage });
+          }
+        });
         await imageRepository.remove(thumbnail[t].image);
       }
+
+      for (var v in themes.videos) {
+        const pathVideo = path.join(__dirname, '..', '..', 'uploads') + '/' + themes.videos[v].path;
+        fs.unlink(pathVideo, (error) => {
+          if (error) {
+            console.error(error);
+            return res.json({ 'message': 'not delete file', file: pathVideo });
+          }
+        });
+      }
+
       await thumbnailRepository.remove(thumbnail);
       await themesRepositoryVideo.remove(themes.videos);
       await themesRepositoryTheme.remove(themes);
-      
+
 
       return res.json(themeView.render(themes));
     } catch (error) {
@@ -195,19 +214,49 @@ export default {
       const commentsRepository = getRepository(Comments);
       const imageRepository = getRepository(Image);
       const thumbnailRepository = getRepository(Thumbnail);
+      const video = await themesRepositoryVideo.findOneOrFail(id);
+
+      const pathVideo = path.join(__dirname, '..', '..', 'uploads') + '/' + video.path;
+
+
+
+      await commentsRepository.delete({ video_id: parseInt(id) });
+
+      try {
+        const thumbnail = await thumbnailRepository.findOneOrFail({ video_id: parseInt(id) }, {
+          relations: ['image'],
+        });
+        const pathImage = path.join(__dirname, '..', '..', 'uploads') + '/' + thumbnail.image[0].path;
+
+        fs.unlink(pathImage, (error) => {
+          if (error) {
+            console.error(error);
+            return res.json({ 'message': 'not delete file', file: pathImage });
+          }
+        });
+
+        await imageRepository.remove(thumbnail.image);
+        await thumbnailRepository.remove(thumbnail);
+
+      } catch (error) {
+        console.log({ message: "thumbnail not found" });
+      }
 
       await themesRepositoryVideo.delete(id);
-      await commentsRepository.delete({ video_id: parseInt(id) });
-      const thumbnail = await thumbnailRepository.findOneOrFail({ video_id: parseInt(id) }, {
-        relations: ['image'],
+
+      fs.unlink(pathVideo, (error) => {
+        if (error) {
+          console.error(error);
+          return res.json({ 'message': 'not delete file', file: pathVideo });
+        }
       });
-      await imageRepository.remove(thumbnail.image);
-      await thumbnailRepository.remove(thumbnail);
 
       return res.json({ 'message': 'successfully' });
+
+
     } catch (error) {
       console.log(error);
-      return res.status(400).json({ message: 'Response Error', error });
+      return res.status(400).json({ message: 'Response Error' });
     }
   },
 

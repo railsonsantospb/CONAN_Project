@@ -112,7 +112,7 @@ export default {
   },
 
 
-  async updateImage(req: Request, res: Response) {
+  async updateThumbnail(req: Request, res: Response) {
 
     const { video_id } = req.params;
     if (req.headers.authorization != process.env.TOKEN) {
@@ -141,7 +141,7 @@ export default {
   },
 
 
-  async deleteImage(req: Request, res: Response) {
+  async deleteThumbnail(req: Request, res: Response) {
     const { video_id } = req.params;
     if (req.headers.authorization != process.env.TOKEN) {
       return res.json({ 'token': 'invalid token' });

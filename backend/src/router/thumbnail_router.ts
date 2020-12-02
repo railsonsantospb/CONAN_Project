@@ -11,8 +11,8 @@ const upload = multer(uploadConfig);
 routes.post('/thumbnail/:id', upload.array('image'), ThumbnailController.create);
 routes.get('/thumbnail', ThumbnailController.show);
 routes.get('/thumbnail/:id', ThumbnailController.indexThumbnail);
-routes.put('/thumbnail/:id', upload.array('image'), ThumbnailController.updateImage);
-routes.delete('/thumbnail/:id', ThumbnailController.deleteImage);
+routes.put('/thumbnail/:id', upload.array('image'), ThumbnailController.updateThumbnail);
+routes.delete('/thumbnail/:id', ThumbnailController.deleteThumbnail);
 
 
 export default routes;
