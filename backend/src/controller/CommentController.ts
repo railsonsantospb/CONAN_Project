@@ -7,6 +7,8 @@ import Videos from '../model/Videos';
 
 
 export default {
+
+  // add new comments
   async create(req: Request, res: Response) {
     const { id } = req.params;
 
@@ -49,7 +51,7 @@ export default {
 
   },
 
-
+  // return view all comments
   async show(req: Request, res: Response) {
     if (req.headers.authorization != process.env.TOKEN) {
       return res.json({ 'token': 'invalid token' });
@@ -64,6 +66,7 @@ export default {
     }
   },
 
+  // return view one comment
   async index(req: Request, res: Response) {
     const { id } = req.params;
     try {
@@ -80,7 +83,7 @@ export default {
 
   },
 
-
+  // return view one comment for video_id
   async indexComment(req: Request, res: Response) {
     const { id } = req.params;
     try {
@@ -96,7 +99,7 @@ export default {
     }
   },
 
-
+  // delete one comment
   async deleteComment(req: Request, res: Response) {
     const { id } = req.params;
     try {

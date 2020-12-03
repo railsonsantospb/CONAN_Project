@@ -25,6 +25,7 @@ export default {
   //   return res.json(thumbnailView.render(thumbnail));
   // },
 
+  // return one view of video_id thumbnail (cover image video)
   async indexThumbnail(req: Request, res: Response) {
     const { id } = req.params;
     if (req.headers.authorization != process.env.TOKEN) {
@@ -45,7 +46,7 @@ export default {
     }
   },
 
-
+  // return all view thumbnail
   async show(req: Request, res: Response) {
 
     if (req.headers.authorization != process.env.TOKEN) {
@@ -67,7 +68,7 @@ export default {
     }
   },
 
-
+  // add new thumbnail
   async create(req: Request, res: Response) {
 
     const { id } = req.params;
@@ -111,7 +112,7 @@ export default {
     }
   },
 
-
+  // update thumbnail
   async updateThumbnail(req: Request, res: Response) {
 
     const { video_id } = req.params;
@@ -141,6 +142,7 @@ export default {
   },
 
 
+  // delete thumbnail
   async deleteThumbnail(req: Request, res: Response) {
     const { video_id } = req.params;
     if (req.headers.authorization != process.env.TOKEN) {

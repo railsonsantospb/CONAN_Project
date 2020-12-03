@@ -13,8 +13,8 @@ import path from 'path';
 
 export default {
 
-
-  async index(req: Request, res: Response) {
+  // return view all themes (category) 
+  async show(req: Request, res: Response) {
     try {
       if (req.headers.authorization != process.env.TOKEN) {
         return res.json({ 'token': 'invalid token' });
@@ -30,8 +30,8 @@ export default {
     }
   },
 
-
-  async show(req: Request, res: Response) {
+  // return view one theme
+  async index(req: Request, res: Response) {
     const { id } = req.params;
     try {
       if (req.headers.authorization != process.env.TOKEN) {
@@ -49,6 +49,7 @@ export default {
   },
 
 
+  // add new theme (category)
   async create(req: Request, res: Response) {
     try {
       const {
@@ -86,7 +87,7 @@ export default {
     }
   },
 
-
+  // update theme
   async updateTheme(req: Request, res: Response) {
     try {
       const {
@@ -120,6 +121,7 @@ export default {
   },
 
 
+  // update video for theme (add new video or alter information)
   async updateVideo(req: Request, res: Response) {
     try {
       const {
@@ -152,7 +154,7 @@ export default {
   },
 
 
-
+  // delete theme (category)
   async deleteTheme(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -204,6 +206,7 @@ export default {
   },
 
 
+  // delete video for theme
   async deleteVideo(req: Request, res: Response) {
     try {
       const { id } = req.params;

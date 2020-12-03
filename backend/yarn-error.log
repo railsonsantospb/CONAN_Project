@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/store2
+  /usr/bin/node /usr/share/yarn/bin/yarn.js dev
 
 PATH: 
   /home/seven/flutter/bin:/home/seven/flutter/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -14,48 +14,47 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fstore2: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
-      at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
-      at Object.onceWrapper (events.js:286:20)
-      at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1145:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  SyntaxError: /home/seven/Documents/CONAN_Project/backend/package.json: Unexpected token } in JSON at position 599
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
-    "name": "backend",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
-    "scripts": {
-      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/serve.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
-    },
-    "dependencies": {
-      "@types/cors": "^2.8.8",
-      "@types/express": "^4.17.8",
-      "@types/express-session": "^1.17.2",
-      "@types/moment": "^2.13.0",
-      "@types/multer": "^1.4.4",
-      "@types/yup": "^0.29.8",
-      "cors": "^2.8.5",
-      "dotenv": "^8.2.0",
-      "express": "^4.17.1",
-      "express-async-errors": "^3.1.1",
-      "express-session": "^1.17.1",
-      "moment": "^2.29.1",
-      "multer": "^1.4.2",
-      "sqlite3": "^5.0.0",
-      "ts-node-dev": "^1.0.0-pre.65",
-      "typeorm": "^0.2.28",
-      "typescript": "^4.0.3",
-      "yup": "^0.29.3"
-    }
+      "name": "backend",
+      "version": "1.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "scripts": {
+          "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/serve.ts",
+          "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+      },
+      "dev-dependecies": {
+          "@types/cors": "^2.8.8",
+          "@types/express": "^4.17.8",
+          "@types/moment": "^2.13.0",
+          "@types/multer": "^1.4.4",
+          "@types/node-localstorage": "^1.3.0",
+          "@types/session-file-store": "^1.2.1",
+          "@types/uuid": "^8.3.0",
+          "@types/yup": "^0.29.8",
+      },
+      "dependencies": {
+          "cors": "^2.8.5",
+          "dotenv": "^8.2.0",
+          "express": "^4.17.1",
+          "express-async-errors": "^3.1.1",
+          "express-session": "^1.17.1",
+          "moment": "^2.29.1",
+          "multer": "^1.4.2",
+          "sqlite3": "^5.0.0",
+          "ts-node-dev": "^1.0.0-pre.65",
+          "typeorm": "^0.2.28",
+          "typescript": "^4.0.3",
+          "yup": "^0.29.3"
+      }
   }
 
 yarn manifest: 
@@ -100,6 +99,11 @@ Lockfile:
     dependencies:
       "@types/express" "*"
   
+  "@types/events@*":
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
+    integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
+  
   "@types/express-serve-static-core@*":
     version "4.17.13"
     resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.13.tgz#d9af025e925fc8b089be37423b8d1eac781be084"
@@ -109,7 +113,7 @@ Lockfile:
       "@types/qs" "*"
       "@types/range-parser" "*"
   
-  "@types/express-session@^1.17.2":
+  "@types/express-session@*":
     version "1.17.2"
     resolved "https://registry.yarnpkg.com/@types/express-session/-/express-session-1.17.2.tgz#ed6a36dd9f267c7fef86004f653bfb9b5cea3c21"
     integrity sha512-QRm/fUuvr/BAosL9CvK351SDQP7wpD8+h3S8ZEE/8IvHJ/ZqHrjZbjx/flYfazyPw7yNi9O5fbjFZbh0vZ1ccg==
@@ -145,6 +149,13 @@ Lockfile:
     dependencies:
       "@types/express" "*"
   
+  "@types/node-localstorage@^1.3.0":
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/@types/node-localstorage/-/node-localstorage-1.3.0.tgz#8341b89abd8ad00afcd3fa9242ed956b8f5ad32c"
+    integrity sha512-9+s5CWGhkYitklhLgnbf4s5ncCEx0An2jhBuhvw/sh9WNQ+/WvNFkPLyLjXGy+Oeo8CjPl69oz6M2FzZH+KwWA==
+    dependencies:
+      "@types/events" "*"
+  
   "@types/node@*":
     version "14.11.8"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.8.tgz#fe2012f2355e4ce08bca44aeb3abbb21cf88d33f"
@@ -168,6 +179,14 @@ Lockfile:
       "@types/express-serve-static-core" "*"
       "@types/mime" "*"
   
+  "@types/session-file-store@^1.2.1":
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/@types/session-file-store/-/session-file-store-1.2.1.tgz#701d84cc1e7d9ed0e6023a4b1f14d9e4c83e4d2f"
+    integrity sha512-7k4fs9ZMsZvVREw76GT9STL37dvDogDaL5CYj4QAssbixRm6Q8g9d+/gmhVK7L7XsgvEPSkj9VZlYTLMmoKORw==
+    dependencies:
+      "@types/express" "*"
+      "@types/express-session" "*"
+  
   "@types/strip-bom@^3.0.0":
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
@@ -177,6 +196,11 @@ Lockfile:
     version "0.0.30"
     resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
     integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
+  
+  "@types/uuid@^8.3.0":
+    version "8.3.0"
+    resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
+    integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
   
   "@types/yup@^0.29.8":
     version "0.29.8"
