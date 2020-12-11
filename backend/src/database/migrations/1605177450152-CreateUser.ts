@@ -16,6 +16,14 @@ export class CreateUser1605177450152 implements MigrationInterface {
 
                 },
                 {
+                    name: 'firstName',
+                    type: 'text',
+                },
+                {
+                    name: 'lastName',
+                    type: 'text',
+                },
+                {
                     name: 'email',
                     type: 'text',
                 },

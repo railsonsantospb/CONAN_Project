@@ -1,10 +1,10 @@
-import Commments from '../model/Commments';
+import Comments from '../model/Comments';
 import moment from 'moment';
 
 
 
 export default {
-  render(comment: Commments) {
+  render(comment: Comments) {
     return {
       id: comment.id,
       comment: comment.comments,

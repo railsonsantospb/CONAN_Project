@@ -87,6 +87,8 @@ export default {
 
     try {
       const {
+        firstName,
+        lastName,
         email,
         password,
       } = req.body;
@@ -99,7 +101,7 @@ export default {
 
 
       const data = {
-        email, password
+        firstName, lastName, email, password
       }
 
       const schema = Yup.object().shape({
@@ -112,7 +114,7 @@ export default {
       });
 
       const user = usersRepository.create({
-        email, password
+        firstName, lastName, email, password
       });
 
       await usersRepository.save(user);
