@@ -1,0 +1,33 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+
+`;
+
+export const Header = styled.header`
+  width: 100%;
+  background-color: #333;
+`;
+
+export const NavBar = styled.nav`
+  max-width: 900px;
+  height: 60px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Brand = styled.div`
+
+`;
+
+export const MenuList = styled.ul`
+  list-style: none;
+`;
+
+export const MenuItem = styled.li`
+  display: inline;
+  margin-left: 10px;
+`;
