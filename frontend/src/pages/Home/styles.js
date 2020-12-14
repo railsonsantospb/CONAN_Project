@@ -47,6 +47,30 @@ export const TitleCategory = styled.h2`
 
 `;
 
+export const VideoCarrosel = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: #555;
+    }
+  }
+`;
+
 export const VideoList = styled.ul`
   width: 100%;
   overflow-y: hidden;
