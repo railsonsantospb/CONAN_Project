@@ -10,7 +10,7 @@ export const Header = styled.header`
 `;
 
 export const NavBar = styled.nav`
-  max-width: 900px;
+  max-width: 1080px;
   height: 60px;
   margin: 0 auto;
   padding: 0 10px;
@@ -35,7 +35,7 @@ export const MenuItem = styled.li`
 
 
 export const Main = styled.main`
-  max-width: 900px;
+  max-width: 1080px;
   margin: 50px auto 0;
   padding: 0 10px;
 
