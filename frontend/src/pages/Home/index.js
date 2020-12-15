@@ -2,7 +2,7 @@ import { MdHome, MdCloudUpload, MdSupervisorAccount, MdArrowBack, MdArrowForward
 
 import { Container, Header, Brand, NavBar, MenuList, MenuItem, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
-import thumbleDefault from '../../assets/img/thumble-default.png';
+import thumbnailDefault from '../../assets/img/thumbnail_default.png';
 
 export default function Home() {
   return (
@@ -32,40 +32,40 @@ export default function Home() {
             </button>
             <VideoList id="ListVideo1">
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <img src={thumbleDefault} alt="thumb-default" />
+                <img src={thumbnailDefault} alt="thumb-default" />
               </VideoItem>
             </VideoList>
             <button onClick={() => document.getElementById("ListVideo1").scrollLeft += 300}>
