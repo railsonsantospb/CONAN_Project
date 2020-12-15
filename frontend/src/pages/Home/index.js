@@ -1,113 +1,45 @@
-import { MdHome, MdCloudUpload, MdSupervisorAccount, MdArrowBack, MdArrowForward } from 'react-icons/md';
+import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 
-import { Container, Header, Brand, NavBar, MenuList, MenuItem, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
+import Header from '../../components/Header';
+
+import { Container, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
 import thumbnailDefault from '../../assets/img/thumbnail_default.png';
 
+import apiVideos from '../../services/api-videos.json';
+
 export default function Home() {
+
   return (
     <Container>
-      <Header>
-        <NavBar>
-          <Brand>Stream</Brand>
-          <MenuList>
-            <MenuItem>
-              <MdHome size={22} color="white" />
-            </MenuItem>
-            <MenuItem>
-              <MdCloudUpload size={22} color="white" />
-            </MenuItem>
-            <MenuItem>
-              <MdSupervisorAccount size={22} color="white" />
-            </MenuItem>
-          </MenuList>
-        </NavBar>
-      </Header>
+      <Header />
       <Main>
-        <VideoBox>
-          <VideoTitleCategory> Filmes </VideoTitleCategory>
-          <VideoCarrosel>
-            <button onClick={() => document.getElementById("ListVideo1").scrollLeft -= 300}>
-              <MdArrowBack size={32} color="white" />
-            </button>
-            <VideoList id="ListVideo1">
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-              <VideoItem>
-                <img src={thumbnailDefault} alt="thumb-default" />
-              </VideoItem>
-            </VideoList>
-            <button onClick={() => document.getElementById("ListVideo1").scrollLeft += 300}>
-              <MdArrowForward size={32} color="white" />
-            </button>
-          </VideoCarrosel>
-        </VideoBox>
+        {apiVideos.map((videoItem) => {
+          return (
+            <VideoBox key={videoItem.id}>
+              <VideoTitleCategory> {videoItem.category} </VideoTitleCategory>
+              <VideoCarrosel>
+                <button onClick={() => document.getElementById(videoItem.id).scrollLeft -= 300}>
+                  <MdArrowBack size={32} color="white" />
+                </button>
 
-        <VideoBox>
-          <VideoTitleCategory> Séries </VideoTitleCategory>
-          <VideoCarrosel>
-            <button onClick={() => document.getElementById("ListVideo2").scrollLeft -= 300}>
-              <MdArrowBack size={32} color="white" />
-            </button>
-            <VideoList id="ListVideo2">
-              <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
-              </VideoItem>
-              <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
-              </VideoItem>
-              <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
-              </VideoItem>
-            </VideoList>
-            <button onClick={() => document.getElementById("ListVideo2").scrollLeft += 300}>
-              <MdArrowForward size={32} color="white" />
-            </button>
-          </VideoCarrosel>
-        </VideoBox>
+                <VideoList id={videoItem.id}>
+                  {videoItem.list_videos.map((list) => {
+                    return (
+                      <VideoItem key={list.id}>
+                        <img src={list.thumbnail || thumbnailDefault} alt={list.title} />
+                      </VideoItem>
+                    );
+                  })}
+                </VideoList>
+
+                <button onClick={() => document.getElementById(videoItem.id).scrollLeft += 300}>
+                  <MdArrowForward size={32} color="white" />
+                </button>
+              </VideoCarrosel>
+            </VideoBox>
+          );
+        })}
 
       </Main>
     </Container>
