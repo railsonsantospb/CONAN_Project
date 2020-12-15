@@ -67,10 +67,10 @@ export default function Home() {
         <VideoBox>
           <VideoTitleCategory> Séries </VideoTitleCategory>
           <VideoCarrosel>
-            <button onClick={() => document.getElementById("ListVideo1").scrollLeft -= 300}>
+            <button onClick={() => document.getElementById("ListVideo2").scrollLeft -= 300}>
               <MdArrowBack size={32} color="white" />
             </button>
-            <VideoList id="ListVideo1">
+            <VideoList id="ListVideo2">
               <VideoItem>
                 <video width="320" height="240" controls>
                   <source src="movie.mp4" type="video/mp4" />
@@ -93,7 +93,7 @@ export default function Home() {
                 </video>
               </VideoItem>
             </VideoList>
-            <button onClick={() => document.getElementById("ListVideo1").scrollLeft += 300}>
+            <button onClick={() => document.getElementById("ListVideo2").scrollLeft += 300}>
               <MdArrowForward size={32} color="white" />
             </button>
           </VideoCarrosel>
