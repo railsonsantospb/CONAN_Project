@@ -85,7 +85,7 @@ export const VideoList = styled.ul`
   list-style: none;
 
   overflow-y: hidden;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 
   display: flex;
