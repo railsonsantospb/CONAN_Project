@@ -38,17 +38,21 @@ export const MenuItem = styled.li`
   }
 `;
 
-
 export const Main = styled.main`
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 0 auto;
   padding: 0 10px;
 
   display: flex;
   flex-direction: column;
 `;
 
-export const TitleCategory = styled.h2`
+export const VideoBox = styled.div`
+  width: 100%;
+  margin: 25px 0;
+`;
+
+export const VideoTitleCategory = styled.h2`
   margin-left: 50px;
 `;
 
