@@ -61,6 +61,13 @@ export const VideoList = styled.ul`
 
 export const VideoItem = styled.li`
   margin: 4px;
+
+  img {
+    width: 200px;
+    height: 140px;
+    border-radius: 4px;
+  }
+
   video {
     width: 200px;
     height: 140px;
