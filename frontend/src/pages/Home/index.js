@@ -1,4 +1,4 @@
-import { MdArrowBack, MdArrowForward } from 'react-icons/md';
+import { MdHome, MdCloudUpload, MdSupervisorAccount, MdArrowBack, MdArrowForward } from 'react-icons/md';
 
 import { Container, Header, Brand, NavBar, MenuList, MenuItem, Main, TitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
@@ -9,9 +9,15 @@ export default function Home() {
         <NavBar>
           <Brand>Stream</Brand>
           <MenuList>
-            <MenuItem> Home </MenuItem>
-            <MenuItem> Upload </MenuItem>
-            <MenuItem> Users </MenuItem>
+            <MenuItem>
+              <MdHome size={22} color="white" />
+            </MenuItem>
+            <MenuItem>
+              <MdCloudUpload size={22} color="white" />
+            </MenuItem>
+            <MenuItem>
+              <MdSupervisorAccount size={22} color="white" />
+            </MenuItem>
           </MenuList>
         </NavBar>
       </Header>

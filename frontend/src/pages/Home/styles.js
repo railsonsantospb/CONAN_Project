@@ -10,10 +10,10 @@ export const Header = styled.header`
 `;
 
 export const NavBar = styled.nav`
-  max-width: 1080px;
+  max-width: 1200px;
   height: 60px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 60px;
 
   display: flex;
   align-items: center;
@@ -30,13 +30,18 @@ export const MenuList = styled.ul`
 
 export const MenuItem = styled.li`
   display: inline;
-  margin-left: 10px;
+  margin-left: 20px;
+
+  a {
+    text-decoration: none;
+    color: #FFF;
+  }
 `;
 
 
 export const Main = styled.main`
-  max-width: 1080px;
-  margin: 50px auto 0;
+  max-width: 1200px;
+  margin: 50px auto;
   padding: 0 10px;
 
   display: flex;
@@ -44,7 +49,7 @@ export const Main = styled.main`
 `;
 
 export const TitleCategory = styled.h2`
-
+  margin-left: 50px;
 `;
 
 export const VideoCarrosel = styled.div`
@@ -73,13 +78,15 @@ export const VideoCarrosel = styled.div`
 
 export const VideoList = styled.ul`
   width: 100%;
+  list-style: none;
+
   overflow-y: hidden;
-  overflow-x: scroll;
-  overscroll-behavior-x: initial;
+  overflow-x: auto;
   scroll-behavior: smooth;
+
   display: flex;
   flex-direction: row;
-  list-style: none;
+
 `;
 
 export const VideoItem = styled.li`
