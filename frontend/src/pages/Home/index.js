@@ -2,6 +2,8 @@ import { MdHome, MdCloudUpload, MdSupervisorAccount, MdArrowBack, MdArrowForward
 
 import { Container, Header, Brand, NavBar, MenuList, MenuItem, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
+import thumbleDefault from '../../assets/img/thumble-default.png';
+
 export default function Home() {
   return (
     <Container>
@@ -30,32 +32,40 @@ export default function Home() {
             </button>
             <VideoList id="ListVideo1">
               <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
+                <img src={thumbleDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
+                <img src={thumbleDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
+                <img src={thumbleDefault} alt="thumb-default" />
               </VideoItem>
               <VideoItem>
-                <video width="320" height="240" controls>
-                  <source src="movie.mp4" type="video/mp4" />
-                  <source src="movie.ogg" type="video/ogg" />
-                    Your browser does not support the video tag.
-                </video>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
+              </VideoItem>
+              <VideoItem>
+                <img src={thumbleDefault} alt="thumb-default" />
               </VideoItem>
             </VideoList>
             <button onClick={() => document.getElementById("ListVideo1").scrollLeft += 300}>

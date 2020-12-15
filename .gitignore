@@ -2,10 +2,10 @@
 node_modules/
 uploads/
 
-*.png
-*.PNG
-*.mp4
-*.mkv
+uploads/*.png
+uploads/*.PNG
+uploads/*.mp4
+uploads/*.mkv
 
 # Logs
 logs
