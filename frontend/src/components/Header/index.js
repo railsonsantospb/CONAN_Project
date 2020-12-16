@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { MdHome, MdCloudUpload, MdSupervisorAccount } from 'react-icons/md';
 
 import { HeaderContainer, NavBar, Brand, MenuList, MenuItem, } from './styles';
@@ -9,13 +11,19 @@ export default function Header() {
         <Brand>Stream</Brand>
         <MenuList>
           <MenuItem>
-            <MdHome size={22} color="white" />
+            <Link to="/">
+              <MdHome size={22} color="white" />
+            </Link>
           </MenuItem>
           <MenuItem>
-            <MdCloudUpload size={22} color="white" />
+            <Link to="/upload">
+              <MdCloudUpload size={22} color="white" />
+            </Link>
           </MenuItem>
           <MenuItem>
-            <MdSupervisorAccount size={22} color="white" />
+            <Link to="/account">
+              <MdSupervisorAccount size={22} color="white" />
+            </Link>
           </MenuItem>
         </MenuList>
       </NavBar>
