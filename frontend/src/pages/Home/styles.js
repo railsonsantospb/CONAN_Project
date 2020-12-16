@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
-`;
-
-export const Main = styled.main`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 10px;
+`;
 
+export const Main = styled.main`
   display: flex;
   flex-direction: column;
 `;
@@ -66,6 +64,7 @@ export const VideoItem = styled.li`
     width: 200px;
     height: 140px;
     border-radius: 4px;
+    box-shadow: 2px 2px 4px #222;
   }
 
   video {

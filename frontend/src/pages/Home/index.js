@@ -1,18 +1,14 @@
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 
-import Header from '../../components/Header';
-
 import { Container, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
 import thumbnailDefault from '../../assets/img/thumbnail_default.png';
-
 import apiVideos from '../../services/api-videos.json';
 
 export default function Home() {
 
   return (
     <Container>
-      <Header />
       <Main>
         {apiVideos.map((videoItem) => {
           return (

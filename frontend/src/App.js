@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { GlobalStyle } from './styles/GlobalStyle';
-import Home from './pages/Home';
+import Header from './components/Header';
+import Routes from './routes';
 
 function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Home />
+      <Header />
+      <Routes />
     </React.Fragment>
   );
 }
