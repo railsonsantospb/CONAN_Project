@@ -4,23 +4,46 @@ import { Container, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList
 
 import thumbnailDefault from '../../assets/img/thumbnail_default.png';
 import apiVideos from '../../services/api-videos.json';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
 
+  const [themes, setTheme] = useState([]);
+  const [thumbnail, setThumbnail] = useState([]);
+
+  // call values in Themes (Category)
+  useEffect(() => {
+
+    async function themesAll(){
+        axios.get(`http://localhost:3333/theme`, {
+        headers: {
+          'Authorization': 'Bearer 1c92o83n74a65n'
+        }
+        })
+        .then(res => {
+          setTheme(res.data);  
+        });
+    }
+
+    themesAll();
+
+  }, [])
+  console.log(themes);
   return (
     <Container>
       <Main>
-        {apiVideos.map((videoItem) => {
+      {themes.map((videoItem) => {
           return (
             <VideoBox key={videoItem.id}>
-              <VideoTitleCategory> {videoItem.category} </VideoTitleCategory>
+              <VideoTitleCategory> {videoItem.title} </VideoTitleCategory>
               <VideoCarrosel>
                 <button onClick={() => document.getElementById(videoItem.id).scrollLeft -= 300}>
                   <MdArrowBack size={32} color="white" />
                 </button>
 
                 <VideoList id={videoItem.id}>
-                  {videoItem.list_videos.map((list) => {
+                  {videoItem.videos.map((list) => {
                     return (
                       <VideoItem key={list.id}>
                         <img src={list.thumbnail || thumbnailDefault} alt={list.title} />
