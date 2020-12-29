@@ -10,7 +10,6 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <BrowserRouter>
-        <Header />
         <Routes />
       </BrowserRouter>
     </React.Fragment>

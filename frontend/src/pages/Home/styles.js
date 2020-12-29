@@ -25,6 +25,7 @@ export const VideoCarrosel = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 
   button {
     width: 40px;

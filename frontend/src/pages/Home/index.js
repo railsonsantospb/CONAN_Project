@@ -1,11 +1,10 @@
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
-
 import { Container, Main, VideoBox, VideoTitleCategory, VideoCarrosel, VideoList, VideoItem } from './styles';
 
 import thumbnailDefault from '../../assets/img/thumbnail_default.png';
-import apiVideos from '../../services/api-videos.json';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+require('dotenv').config();
 
 export default function Home() {
 
@@ -26,10 +25,22 @@ export default function Home() {
         });
     }
 
+    async function thumbnailAll(){
+      axios.get(`http://localhost:3333/thumbnail`, {
+      headers: {
+        'Authorization': 'Bearer 1c92o83n74a65n'
+      }
+      })
+      .then(res => {
+        setThumbnail(res.data);  
+      });
+  }
+
     themesAll();
+    thumbnailAll();
 
   }, [])
-  console.log(themes);
+  //console.log(thumbnail);
   return (
     <Container>
       <Main>
@@ -44,9 +55,15 @@ export default function Home() {
 
                 <VideoList id={videoItem.id}>
                   {videoItem.videos.map((list) => {
+                    let img = '';
+                    thumbnail.forEach(image => {
+                      if(videoItem.id === image.video_id){
+                        img = image.image[0].url;
+                      }
+                    })
                     return (
                       <VideoItem key={list.id}>
-                        <img src={list.thumbnail || thumbnailDefault} alt={list.title} />
+                        <img src={img || thumbnailDefault} alt={videoItem.title} />
                       </VideoItem>
                     );
                   })}
