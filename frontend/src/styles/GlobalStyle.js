@@ -32,8 +32,6 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    background: #444;
-    color: #FFF;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 `;
